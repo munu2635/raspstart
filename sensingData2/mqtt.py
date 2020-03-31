@@ -9,10 +9,10 @@ class Connect :
 
     client = mqtt.Client()
 
-    def __init__(self, conIp, flag):
+    def __init__(self, ipPort, flag):
         print("MQTT-init")
         self.initToSub()
-        self.client.connect("localhost")
+        self.client.connect(ipPort[0], ipPort[1])
         print("MQTT-connrct")
         self.flag = flag
 
@@ -47,8 +47,9 @@ class Connect :
         #def on_connect(client, userdata, rc):
         #   print("connected with result code " + str(rc))
         print("MQTT-onConnect")
-        for i in self.getTopic :
-            self.client.subscribe(i)
+        #for i in self.getTopic :
+        #    self.client.subscribe(i)
+        self.client.subscribe("tcs/phone")
 
         def on_message(client, userdata, msg):
             print("Topic: " + msg.topic + " Message: " + str(msg.payload))
