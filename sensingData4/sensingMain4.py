@@ -11,7 +11,14 @@ localGlobalIp = os.popen('curl ifconfig.me').read()
 
 cameraCheck = os.system('sh /home/pi/raspstart/mjpg.sh &')
 
-mainInstance = sensor.Sensor(GPIO, localGlobalIp)
+ipPort = ["124.139.136.86", "1883"]
+
+cameraPort = "8891"
+
+
+
+
+mainInstance = sensor.Sensor(GPIO, localGlobalIp, ipPort, cameraPort)
 
 def startToSensing():
 		mainInstance.sensing()

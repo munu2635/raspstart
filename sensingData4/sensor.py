@@ -5,15 +5,14 @@ import sensorTopic
 class Sensor :
 	all_pin = [22, 25, 24, 23, 27, 16, 26]
 
-	ipPort = ["124.139.136.86", "1883"]
-
-	cameraPort = "8891"
-
-	sending = sensorTopic.SendTopic(ipPort)
-
-	def __init__(self, GPIO,localIP):
+	def __init__(self, GPIO, localIP, ipPort, cameraPort):
 		self.tHCount = 0
 		self.localIp = localIP
+		self.ipPort = ipPort
+		self.cameraPort = cameraPort
+		self.sending = sensorTopic.SendTopic(ipPort)
+
+
 		self.dht11_instance = sensorGpio.DHT11(pin = self.all_pin[0], GPIO = GPIO)
 		self.fire_instance = sensorGpio.Fire(pin = self.all_pin[1], GPIO = GPIO)
 		self.shock_instance = sensorGpio.Shock(pin = self.all_pin[4], GPIO = GPIO)
