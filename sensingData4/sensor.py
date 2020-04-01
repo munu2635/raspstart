@@ -43,26 +43,27 @@ class Sensor :
 
 	def sendAll(self, i):
 		if i == 0 :
-			self.sending.send(0, 0)
-			self.sending.send(1, 0)
-			self.sending.send(2, 0)
-			self.sending.send(3, 0)
-			self.sending.send(4, 0)
+			self.sending.send(0, self.dht11_instance.lastHumid)
+			self.sending.send(1, self.dht11_instance.lastTemp)
+			self.sending.send(2, self.fire_instance.lastFire)
+			self.sending.send(3, self.shock_instance.lastShock)
+			self.sending.send(4, self.ir_instance.lastIR)
 			self.sending.send(6, self.localIp)
 			self.sending.send(7, self.cameraPort)
 			self.sending.send(8, "send-start")
 		elif i == 1:
-			self.sending.send(0, 1)
-			self.sending.send(1, 2)
-			self.sending.send(2, 3)
-			self.sending.send(3, 4)
-			self.sending.send(4, 5)
+			self.sending.send(0, self.dht11_instance.lastHumid)
+			self.sending.send(1, self.dht11_instance.lastTemp)
+			self.sending.send(2, self.fire_instance.lastFire)
+			self.sending.send(3, self.shock_instance.lastShock)
+			self.sending.send(4, self.ir_instance.lastIR)
 			self.sending.send(6, self.localIp)	
 			self.sending.send(7, self.cameraPort)	
 			self.sending.send(8, "send-start")
 		elif i == 2:
 			self.sending.send(6, self.localIp)
 			self.sending.send(7, self.cameraPort)	
+
 
 	def tempHumidCheck(self):
 		result = self.dht11_instance.read()
