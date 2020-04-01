@@ -2,7 +2,7 @@ import Connect
 
 class SendTopic :
     sendTopic = ["tcs/temp", "tcs/humid",  "tcs/fire", "tcs/shock", "tcs/ir", "tcs/clear", "tcs/localip","tcs/cameraport", "test/broker"]
-    getTopic = ["tcs/com", "test/phone"]
+    getTopic = ["tcs/com", "tcs/phone"]
 
     flag = ""
 
