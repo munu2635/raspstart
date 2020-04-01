@@ -5,9 +5,9 @@ import sensorTopic
 class Sensor :
 	all_pin = [22, 25, 24, 23, 27, 16, 26]
 
-	ipPort = ["124.139.136.86", "1883"]  
+	ipPort = ["124.139.136.86", "1883"]
 
-	cameraPort = "11091"
+	cameraPort = "8891"
 
 	sending = sensorTopic.SendTopic(ipPort)
 
@@ -40,7 +40,7 @@ class Sensor :
 			self.sending.setFlag(".")
 		elif self.sending.getFlag() == "localIP" :
 			self.sendAll(2)
-			self.sending.setFlag(".")	
+			self.sending.setFlag(".")
 
 	def sendAll(self, i):
 		if i == 0 :
