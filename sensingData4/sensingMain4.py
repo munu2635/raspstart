@@ -6,11 +6,12 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
-localIp = os.popen('hostname -I').read() 
+localGlobalIp = os.popen('curl ifconfig.me').read()
+# localIp = os.popen('hostname -I').read() 
 
 cameraCheck = os.system('home/pi/raspstart/mjpg.sh')
 
-mainInstance = sensor.Sensor(GPIO, localIP)
+mainInstance = sensor.Sensor(GPIO, localGlobalIp)
 
 def startToSensing():
 		mainInstance.sensing()
