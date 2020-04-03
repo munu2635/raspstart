@@ -4,9 +4,11 @@ class Connect :
     	client = mqtt.Client()
     	topicList = list()
 
-    	def __init__(self, ipPort):
+    	def __init__(self):
         	print("MQTT-init")
-        	self.client.connect(ipPort[0], ipPort[1])
+
+	def connect(self, ipPort):
+		self.client.connect(ipPort[0], ipPort[1])
         	print("MQTT-connect")
         	try:
         		self.client.loop_start()

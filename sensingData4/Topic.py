@@ -2,7 +2,7 @@ import Connect
 
 class Topic :
 
-    sendTopic = ["tcs/rasp1/temp", "tcs/rasp1/humid",  "tcs/rasp1/fire", "tcs/rasp1/shock", 
+    sendTopic = ["tcs/rasp/temp", "tcs/rasp/humid",  "tcs/rasp/fire", "tcs/rasp/shock",
     "tcs/rasp/ir", "tcs/rasp/clear", "tcs/rasp/localIp", "tcs/rasp/cameraPort",
      "test/rasp/broker"]
 
@@ -13,19 +13,15 @@ class Topic :
     detectServerMessage = ["start", "ipPort", "true", "dStart", "dEnd"]
 
     MessageList = [computerMessage, phoneMessage, detectServerMessage]
-    
-    raspdata = ["id", sendTopic, MessageList, TakeTopic] 
-
-    # topic - id/sendTopic 
-
 
     flag = False
     topic = ""
     data = ""
 
     def __init__(self, ipPort):
-        self.connect = Connect.Connect(ipPort)
+        self.connect = Connect.Connect()
         self.initToSub()
+	self.connect.connect(ipPort)
 
     def setTakeMassageTopic(self, topic):
         self.connect.setSubscribe(topic)
@@ -35,6 +31,7 @@ class Topic :
 
     def initToSub(self):
         print("MQTT-initTosub")
+
         def on_connect(client, userdata, flags, rc):
             print("MQTT-onConnect - " + str(rc))
             for i in self.TakeTopic :

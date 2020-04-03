@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 import sensor
 import os
 
@@ -15,9 +16,8 @@ cameraPort = "8891"
 
 cameraIpPort = [ localGlobalIp , cameraPort ]
 
-# dev server IP 
-brokerIpPort = ["124.139.136.86", "1883"]  
-
+# dev server IP
+brokerIpPort = ["124.139.136.86", "1883"]
 
 cameraCheck = os.system('sh /home/pi/raspstart/mjpg.sh &') ##
 

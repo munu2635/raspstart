@@ -4,8 +4,6 @@ import Topic
 
 class Sensor :
 	all_pin = [22, 25, 24, 23, 27, 16, 26]
-	# dht11_pin = 22 / fire_pin = 25 / led_red_pin = 24 / led_green_pin = 23
-	# shock_pin = 27 / ir_sensor_pin = 16 / button_pin = 26W
 
 	lastdatas = ["0", "0", "0", "0", "0", "0"]
 
@@ -25,7 +23,7 @@ class Sensor :
 		self.ir_instance = sensorGpio.IR(pin = self.all_pin[5], GPIO = GPIO)
 		self.led_instance = sensorGpio.LED(pin_G = self.all_pin[3], pin_R = self.all_pin[2], GPIO = GPIO)
 		self.clear_instance = sensorGpio.Button(pin = self.all_pin[6], GPIO = GPIO)
-		self.instance = [self.dht11_instance, self.fire_instance, self.shock_instance, 
+		self.instance = [self.dht11_instance, self.fire_instance, self.shock_instance,
 						self.ir_instance, self.led_instance, self.clear_instance]
 
 	def sensingStart(self):
@@ -49,7 +47,7 @@ class Sensor :
 		print("start matching Topic")
 		data = self.topic.data
 		for messageNum, message in enumerate(self.topic.MessageList[messgeSenderindex]):
-			print(data, messgeSenderindex, messageNum,  message)	
+			print(data, messgeSenderindex, messageNum,  message)
 			if data == message :
 				return [messgeSenderindex, messageNum]
 
@@ -66,9 +64,8 @@ class Sensor :
 		print("sender is com")
 		self.topic.setSendMessageTopic(0, self.lastdatas[0])
 
-	# phoneMessage = ["start", "get", "IpPort"]
 	def senderIsPhone(self, senderMesaage):
-		print("sender is phone")		
+		print("sender is phone")
 		if senderMesaage == 0:
 			for i, lastdata in enumerate(self.lastdatas):
 				self.topic.setSendMessageTopic(i, lastdata)
@@ -84,9 +81,8 @@ class Sensor :
 			self.topic.setSendMessageTopic(6, self.cameraIpPort[0])
 			self.topic.setSendMessageTopic(7, self.cameraIpPort[1])
 
-	# detectServerMessage = ["start", "IpPort", "true", "dStart", "dEnd"]
 	def senderIsDServer(self, senderMesaage):
-		print("sender is DServer")			
+		print("sender is DServer")
 		if senderMesaage == 0:
 			self.topic.setSendMessageTopic(6, self.cameraIpPort[0])
 			self.topic.setSendMessageTopic(7, self.cameraIpPort[1])
@@ -102,8 +98,8 @@ class Sensor :
 		self.shockCheck()
 		self.clearButton()
 
-	def tempHumidCheck(self): # instance 0 / topic, lastdart 0, 1
-		result = self.instance[0].read() 
+	def tempHumidCheck(self):
+		result = self.instance[0].read()
 		if result.is_valid():
 
 			now_time = "Last valid input: " + str(datetime.datetime.now())
@@ -125,7 +121,7 @@ class Sensor :
 
 			self.tHCount += 1
 
-	def fireCheck(self): # instance 1 / topic, lastdart 2
+	def fireCheck(self):
 		read = self.instance[1].read()
 		if read == 1:
 			self.topic.setSendMessageTopic(2, 1)
@@ -133,7 +129,7 @@ class Sensor :
 			print(datetime.datetime.now())
 			print("MQTT-send -" + "fire")
 
-	def shockCheck(self): # instance 2 / topic, lastdart 3
+	def shockCheck(self):
 		read = self.instance[2].read()
 		if read == 1:
 			self.topic.setSendMessageTopic(3, 1)
@@ -141,19 +137,19 @@ class Sensor :
 			print(str(datetime.datetime.now()))
 			print("MQTT-send - " + "shock")
 
-	def irCheck(self): # instance 3 / topic, lastdart 4
+	def irCheck(self):
 		read = self.instance[3].read()
-		if read == 1: # 0!!
+		if read == 0:
 			self.topic.setSendMessageTopic(4, 1)
 			self.lastdatas[3] ="1"
 			print(str(datetime.datetime.now()))
 			print("MQTT-send - " + "detect")
 
-	def clearButton(self): #  topic 6
+	def clearButton(self):
 		read = self.instance[5].read()
 
-		if read == 1: # 0!!
-			for i in range(3, 7):
+		if read == 0:
+			for i in range(2, 7):
 				if i == 6:
 					self.topic.setSendMessageTopic(i, 1)
 				else :
