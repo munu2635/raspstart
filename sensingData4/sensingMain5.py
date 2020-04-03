@@ -12,7 +12,7 @@ GPIO.cleanup()
 #local port "8891"
 
 localGlobalIp = os.popen('curl ifconfig.me').read() ## global ip
-cameraPort = "8891"
+cameraPort = "11092" #"8891"
 
 cameraIpPort = [ localGlobalIp , cameraPort ]
 
@@ -22,7 +22,7 @@ brokerIpPort = ["124.139.136.86", "1883"]
 cameraCheck = os.system('sh /home/pi/raspstart/mjpg.sh &') ##
 
 # Can Use GPIO
-mainInstance = sensor.Sensor(GPIO, brokerIpPort,cameraIpPort)
+mainInstance = sensor.Sensor(GPIO, brokerIpPort, cameraIpPort)
 
 def startToSensing():
 		mainInstance.sensingStart()
