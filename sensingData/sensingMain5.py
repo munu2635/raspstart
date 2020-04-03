@@ -13,12 +13,12 @@ cameraPort = "8891"
 cameraIpPort = [ localGlobalIp , cameraPort ]
 
 # dev server IP 
-brokerIppPort = ["124.139.136.86", "1883"] 
+brokerIpPort = ["124.139.136.86", "1883"] 
 
 cameraCheck = os.system('sh /home/pi/raspstart/mjpg.sh &') ##
 
 # Can Use GPIO
-mainInstance = sensor.Sensor(GPIO, brokerIpPort,cameraIpPort)
+mainInstance = sensor.Sensor(GPIO, brokerIpPort, cameraIpPort)
 
 def startToSensing():
 		mainInstance.sensingStart()
