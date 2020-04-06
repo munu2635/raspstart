@@ -20,7 +20,7 @@ class Connect :
             		self.client.disconnect()
 
 	def setPublish(self, Topic, data):
-	    self.client.publish(Topic, data)
+	    self.client.publish(Topic, data, 0, False)
 
         def setSubscribe(self, i):
             self.client.subscribe(i)
