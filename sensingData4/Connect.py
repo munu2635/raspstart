@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 
+
 class Connect :
     	client = mqtt.Client()
     	topicList = list()
