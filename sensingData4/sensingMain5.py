@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
 localIp = os.popen('hostname -I').read() ##  local ip
-localPort "8891"
+localPort = "8891"
 
 localGlobalIp = os.popen('curl ifconfig.me').read() ## global ip
 cameraPort = "11092"
