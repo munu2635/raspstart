@@ -18,16 +18,17 @@ class Topic :
     topic = ""
     data = ""
 
-    def __init__(self, ipPort):
+    def __init__(self, ipPort, raspid):
+        self.raspid = raspid
         self.connect = Connect.Connect()
         self.initToSub()
-	self.connect.connect(ipPort)
+        self.connect.connect(ipPort)
 
     def setTakeMassageTopic(self, topic):
-        self.connect.setSubscribe(topic)
+        self.connect.setSubscribe(self.raspid + "/" + topic)
 
     def setSendMessageTopic(self, sensorNum, data):
-        self.connect.setPublish(self.sendTopic[sensorNum], data)
+        self.connect.setPublish(self.raspid + "/" + self.sendTopic[sensorNum], data)
 
     def initToSub(self):
         print("MQTT-initTosub")
@@ -35,7 +36,7 @@ class Topic :
         def on_connect(client, userdata, flags, rc):
             print("MQTT-onConnect - " + str(rc))
             for i in self.TakeTopic :
-                self.setTakeMassageTopic(i)
+                self.setTakeMassageTopic(self.raspid + "/" + i)
 
         def on_message(client, userdata, msg):
             print("MQTT-onMessage")

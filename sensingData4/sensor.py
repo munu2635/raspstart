@@ -7,11 +7,11 @@ class Sensor :
 
 	lastdatas = ["0", "0", "0", "0", "0", "0"]
 
-	def __init__(self, GPIO, brokerIpPort, cameraIpPort):
+	def __init__(self, GPIO,  allIpPort, raspid):
 		self.tHCount = 0
-		self.brokerIpPort = brokerIpPort
-		self.cameraIpPort = cameraIpPort
-		self.topic = Topic.Topic(brokerIpPort)
+		self.brokerIpPort = allIpPort[0]
+		self.cameraIpPort = allIpPort[1]
+		self.topic = Topic.Topic(self.brokerIpPort, raspid)
 
 		self.setInstance(GPIO)
 		self.led_instance.write(1)
