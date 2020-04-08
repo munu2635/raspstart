@@ -9,6 +9,7 @@ class Sensor :
 
 	def __init__(self, GPIO,  allIpPort, raspid):
 		self.tHCount = 0
+		self.raspid = raspid
 		self.brokerIpPort = allIpPort[0]
 		self.cameraIpPort = allIpPort[1]
 		self.topic = Topic.Topic(self.brokerIpPort, raspid)
@@ -34,7 +35,15 @@ class Sensor :
 		if self.topic.flag == True:
 			print("take Topic")
 			self.topic.flag = False
-			topic = self.topic.topic
+			if self.raspid == self.topic.topic[0:len(self.raspid)+1] :
+				topic = self.topic.topic[len(self.raspid):]
+			else :
+				topic == ""	
+			# elif "rasp" != self.topic.topic[0:4] : # all message
+			#	topic = self.topic.topic
+			#else : 
+			#	return
+			
 			for i, sender in enumerate(self.topic.TakeTopic):
 				print(topic, i, sender)
 				if topic == sender:
