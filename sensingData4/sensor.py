@@ -5,7 +5,7 @@ import Topic
 class Sensor :
 	all_pin = [22, 25, 24, 23, 27, 16, 26, 6, 5]
 
-	lastdatas = ["0", "0", "0", "0", "0", "0", "0", "0"]
+	lastdatas = ["0", "0", "0", "0", "0", "0"]
 
 	def __init__(self, GPIO,  allIpPort, raspid):
 		self.tHCount = 0
@@ -88,6 +88,7 @@ class Sensor :
 				self.topic.setSendMessageTopic(i, lastdata)
 			self.topic.setSendMessageTopic(6, self.cameraIpPort[0])
 			self.topic.setSendMessageTopic(7, self.cameraIpPort[1])
+			self.topic.setSendMessageTopic(8, self.cameraIpPort[2])
 		elif senderMesaage == 1:
 			for i, lastdata in enumerate(self.lastdatas):
 				self.topic.setSendMessageTopic(i, lastdata)
