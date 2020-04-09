@@ -9,9 +9,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
 # rasp id
-raspid = "test1"
+raspid = "rasp3"
 
-# camera IP Port 
+# camera IP Port
 localIp = os.popen('hostname -I').read() ##  local ip
 localPort = "8891"
 
@@ -23,7 +23,7 @@ if localIp == localGlobalIp:
 else :
 	cameraIpPort = [localGlobalIp , cameraPort]
 
-# borker server 
+# borker server
 brokerIpPort = ["124.139.136.86", "1883"]
 
 allIpPort = [brokerIpPort, cameraIpPort]

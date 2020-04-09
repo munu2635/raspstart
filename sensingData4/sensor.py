@@ -35,15 +35,17 @@ class Sensor :
 		if self.topic.flag == True:
 			print("take Topic")
 			self.topic.flag = False
-			if self.raspid == self.topic.topic[0:len(self.raspid)+1] :
-				topic = self.topic.topic[len(self.raspid):]
+			print(self.topic.topic[0:len(self.raspid)])
+
+			if self.raspid == self.topic.topic[0:len(self.raspid)] :
+				topic = self.topic.topic[len(self.raspid) + 1:]
 			else :
-				topic == ""	
+				topic = ""
 			# elif "rasp" != self.topic.topic[0:4] : # all message
 			#	topic = self.topic.topic
-			#else : 
+			#else :
 			#	return
-			
+
 			for i, sender in enumerate(self.topic.TakeTopic):
 				print(topic, i, sender)
 				if topic == sender:
@@ -145,7 +147,7 @@ class Sensor :
 
 	def fireCheck(self):
 		read = self.instance[1].read()
-		if read == 1:
+		if read == 0: #!! 1
 			self.topic.setSendMessageTopic(2, 1)
 			self.lastdatas[1] = "1"
 			print(datetime.datetime.now())
@@ -153,7 +155,7 @@ class Sensor :
 
 	def shockCheck(self):
 		read = self.instance[2].read()
-		if read == 1:
+		if read == 0: #!! 1
 			self.topic.setSendMessageTopic(3, 1)
 			self.lastdatas[2] = "1"
 			print(str(datetime.datetime.now()))
