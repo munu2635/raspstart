@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.cleanup()
 
 # rasp id
-raspid = "rasp3"
+raspid = "!!!"
 
 # camera IP Port
 localIp = os.popen('hostname -I').read() ##  local ip
@@ -19,9 +19,9 @@ localGlobalIp = os.popen('curl ifconfig.me').read() ## global ip
 cameraPort = "11092" # if you use Port forwarding
 
 if localIp == localGlobalIp:
-	cameraIpPort =[localGlobalIp, localPort, cameraIpPort]
+	cameraIpPort =[localGlobalIp, localPort, ""]
 else :
-	cameraIpPort = [localGlobalIp, cameraPort, ""]
+	cameraIpPort = [localGlobalIp, cameraPort, localPort]
 
 # borker server
 brokerIpPort = ["124.139.136.86", "1883"]
