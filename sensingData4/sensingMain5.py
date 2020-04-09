@@ -19,9 +19,9 @@ localGlobalIp = os.popen('curl ifconfig.me').read() ## global ip
 cameraPort = "11092" # if you use Port forwarding
 
 if localIp == localGlobalIp:
-	cameraIpPort =[localGlobalIp, localPort, ""]
+	cameraIpPort =[localGlobalIp, localPort, localIp]
 else :
-	cameraIpPort = [localGlobalIp, cameraPort, localPort]
+	cameraIpPort = [localGlobalIp, cameraPort, localIp]
 
 # borker server
 brokerIpPort = ["124.139.136.86", "1883"]
