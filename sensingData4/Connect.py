@@ -7,8 +7,8 @@ class Connect :
     def __init__(self):
         print("MQTT-init")
 
-	def connect(self, ipPort):
-		self.client.connect(ipPort[0], ipPort[1])
+    def connect(self, ipPort):
+	self.client.connect(ipPort[0], ipPort[1])
         print("MQTT-connect")
         try:
         	self.client.loop_start()
@@ -19,8 +19,8 @@ class Connect :
     		self.client.loop_stop()
     		self.client.disconnect()
 
-	def setPublish(self, Topic, data):
-	    self.client.publish(Topic, data, 0, False)
+    def setPublish(self, Topic, data):
+        self.client.publish(Topic, data, 0, False)
 
     def setSubscribe(self, i):
         self.client.subscribe(i)
