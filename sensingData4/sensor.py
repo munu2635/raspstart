@@ -91,6 +91,7 @@ class Sensor :
 		elif senderMesaage == 1:
 			for i, lastdata in enumerate(self.lastdatas):
 				self.topic.setSendMessageTopic(i, lastdata)
+			self.topic.setSendMessageTopic(8, self.cameraIpPort[2])
 		elif senderMesaage == 2:
 			self.topic.setSendMessageTopic(6, self.cameraIpPort[0])
 			self.topic.setSendMessageTopic(7, self.cameraIpPort[1])
