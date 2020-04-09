@@ -4,12 +4,12 @@ class Topic :
 
     sendTopic = ["tcs/rasp/temp", "tcs/rasp/humid",  "tcs/rasp/fire", "tcs/rasp/shock",
     "tcs/rasp/ir", "tcs/rasp/clear", "tcs/rasp/localIp", "tcs/rasp/cameraPort",
-     "test/rasp/broker"]
+     "tcs/rasp/localIpUnder"]
 
     TakeTopic = ["tcs/com", "tcs/phone", "tcs/detectServer"]
 
-    computerMessage = ["start", "get", "ipPort"]
-    phoneMessage = ["start", "get", "ipPort"]
+    computerMessage = ["start", "get", "ipPort", "reboot"]
+    phoneMessage = ["start", "get", "ipPort", "reboot"]
     detectServerMessage = ["start", "ipPort", "true", "dStart", "dEnd"]
 
     MessageList = [computerMessage, phoneMessage, detectServerMessage]

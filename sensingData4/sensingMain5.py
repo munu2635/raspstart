@@ -19,9 +19,9 @@ localGlobalIp = os.popen('curl ifconfig.me').read() ## global ip
 cameraPort = "11092" # if you use Port forwarding
 
 if localIp == localGlobalIp:
-	cameraIpPort =[localGlobalIp, localPort]
+	cameraIpPort =[localGlobalIp, localPort, cameraIpPort]
 else :
-	cameraIpPort = [localGlobalIp , cameraPort]
+	cameraIpPort = [localGlobalIp, cameraPort, ""]
 
 # borker server
 brokerIpPort = ["124.139.136.86", "1883"]
@@ -30,7 +30,7 @@ allIpPort = [brokerIpPort, cameraIpPort]
 # cameraCheck = os.system('sh /home/pi/raspstart/mjpg.sh &') ##
 
 # Can Use GPIO
-mainInstance = sensor.Sensor(GPIO,  allIpPort, raspid)
+mainInstance = sensor.Sensor(GPIO, allIpPort, raspid)
 def startToSensing():
 	mainInstance.sensingStart()
 
