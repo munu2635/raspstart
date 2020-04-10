@@ -1,4 +1,6 @@
 import time
+import datetime
+# timer
 
 class DHT11Result:
 	ERR_NO_ERROR = 0
@@ -200,71 +202,40 @@ class DHT11:
 	def __calculate_checksum(self, the_bytes):
 		return the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3] & 255
 
-class Fire:
-	def __init__(self, pin, GPIO):
-		self.__pin = pin
-		self.GPIO = GPIO
-		self.setting()
+class Control:
 
-	def setting(self):
-		self.GPIO.setup(self.__pin, self.GPIO.IN)
+	def __init__(self, pin, GPIO, topic, topicNum):
+		self.dht11_instance = DHT11(pin, GPIO = GPIO)
+		self.topic = topic
+		self.tempTopicNum = topicNum[0]
+		self.humidTopicNum = topicNum[1]
 
-	def read(self):
-		return self.GPIO.input(self.__pin)
+		self.detectCheckLastTime = ""
+		self.lastdata = ["", ""]
+		
+		self.tHCount = 0
 
-class Shock:
-	def __init__(self, pin, GPIO):
-		self.__pin = pin
-		self.GPIO = GPIO
-		self.setting()
+	def check(self):
+		result = self.dht11_instance.read()
+		if result.is_valid():
+			now_time = "Last valid input: " + str(datetime.datetime.now())
+			temp = "Temperature: %d C" % result.temperature
+			humid = "Humidity: %d %%" % result.humidity
 
-	def setting(self):
-		self.GPIO.setup(self.__pin, self.GPIO.IN)
+			self.lastdata[0] = temp
+			self.lastdata[1] = humid
 
-	def read(self):
-		return self.GPIO.input(self.__pin)
+			if(self.tHCount == 5):
+				self.topic.setSendMessageTopic(0, self.tempTopicNum, temp)
+				self.topic.setSendMessageTopic(0, self.humidTopicNum, humid)
+				self.tHCount = 0
 
-class IR:
-	def __init__(self, pin, GPIO):
-		self.__pin = pin
-		self.GPIO = GPIO
-		self.setting()
+				print(now_time)
+				print("MQTT-send - " + temp)
+				print("MQTT-send - " + humid)
 
-	def setting(self):
-		self.GPIO.setup(self.__pin, self.GPIO.IN)
+			self.tHCount += 1
 
-	def read(self):
-		return self.GPIO.input(self.__pin)
-
-
-class LED:
-	def __init__(self, pin_R, pin_G, GPIO):
-		self.GPIO = GPIO
-		self.__pin_R = pin_R
-		self.__pin_G = pin_G
-		self.setting()
-
-	def setting(self):
-		self.GPIO.setup(self.__pin_G, self.GPIO.OUT)
-		self.GPIO.setup(self.__pin_R, self.GPIO.OUT)
-
-	def write(self, i):
-		if(i == 0):
-			self.GPIO.output(self.__pin_G, False)
-			self.GPIO.output(self.__pin_R, True)
-		elif(i == 1):
-			self.GPIO.output(self.__pin_G, True)
-			self.GPIO.output(self.__pin_R, False)
-			
-class Button:
-	def __init__(self, pin, GPIO):
-		self.GPIO = GPIO
-		self.__pin = pin
-		self.setting()
-
-	def setting(self):
-		self.GPIO.setup(self.__pin, self.GPIO.IN)
-
-	def read(self):
-		return self.GPIO.input(self.__pin)
-
+	def getNowData(self):
+		self.topic.setSendMessageTopic(0, self.tempTopicNum, self.lastdata[0])
+		self.topic.setSendMessageTopic(0, self.humidTopicNum, self.lastdata[1])
