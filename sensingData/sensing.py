@@ -45,7 +45,7 @@ class Sensing :
 		if self.useSensor[6] :
 			self.button_instance = Button.Control(self.all_pin[6], GPIO, self.topic)
 		if self.useSensor[7] :
-			self.led_instance = LED.LED(self.all_pin[3], self.all_pin[2], GPIO)
+			self.led_instance = LED.LED(self.all_pin[2], self.all_pin[3], GPIO)
 			self.led_instance.write(1)
 
 
