@@ -26,12 +26,12 @@ class Control:
 		read = self.cds_instance.read()
 		
 		if read == False and self.lastdata == False :  
-			self.lastdata = True
+			self.lastdata = 1 # on
 			self.topic.setSendMessageTopic(0, self.topicNum, self.lastdata)
 
 			print("MQTT-send - " + "cds")
 		elif read == False and self.lastdata == False :
-			self.lastdata = False
+			self.lastdata = 0 # off
 			self.topic.setSendMessageTopic(0, self.topicNum, self.lastdata)
 
 			print("MQTT-send - " + "cds")
