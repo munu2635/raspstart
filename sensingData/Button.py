@@ -25,7 +25,7 @@ class Control:
 		if read == 0:
 			for i in range(0, len(sensorDetectControl)):
 				sensorDetectControl[i].lastdataClear()
-				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck)
+				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck, i)
 
 			print(str(datetime.datetime.now()))
 			print("MQTT-send - clear")
