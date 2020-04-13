@@ -59,7 +59,7 @@ class Sensing :
 
 		for i in self.sensorDetectControl :
 			data = i.check()
-			if data == True and self.useSensor[7] :
+			if data == 1 and self.useSensor[7] :
 				self.led_instance.write(0)
 
 		if self.useSensor[6] and self.button_instance.clearButton(self.sensorDetectControl):
