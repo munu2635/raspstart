@@ -34,7 +34,7 @@ class Sensing :
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
-			self.sensorTimerControl.append(DHT11.Control(self.all_pin[0], GPIO, self.topic,[0 ,1])) 
+			self.sensorTimerControl.append(DHT11.Control(self.all_pin[0], GPIO, self.topic,[0, 1])) 
 		if self.useSensor[1] :
 			self.sensorDetectControl.append(Fire.Control(self.all_pin[1], GPIO, self.topic, 0))
 		if self.useSensor[2] :

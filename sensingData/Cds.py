@@ -24,6 +24,7 @@ class Control:
 
 	def check(self):
 		read = self.cds_instance.read()
+		
 		if read == False and self.lastdata == False :  
 			self.lastdata = True
 			self.topic.setSendMessageTopic(0, self.topicNum, self.lastdata)
