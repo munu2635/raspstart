@@ -30,7 +30,7 @@ class Sensing :
 
 		self.setInstance(GPIO)
 		
-		self.receive = receive.Receive([self.allSensorControl, self.sensorDetectControl], self.cameraIpPort, self.topic)
+		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl], self.cameraIpPort, self.topic)
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
