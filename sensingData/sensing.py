@@ -23,11 +23,13 @@ class Sensing :
 		self.topic = Topic.Topic(self.brokerIpPort, raspid)
 		self.raspid = raspid
 
+		self.reciveControl = False
 		self.sensorTimerControl = []
 		self.sensorDetectControl = []
 
 		self.setInstance(GPIO)
-		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl], self.cameraIpPort, self.topic)
+		
+		self.receive = receive.Receive([self.allSensorControl, self.sensorDetectControl], self.cameraIpPort, self.topic)
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
@@ -51,7 +53,7 @@ class Sensing :
 
 	def sensingStart(self):
 		self.sensingList()
-		self.receive.getData(self.raspid)
+		self.reciveControl = self.receive.getData(self.raspid)
 
 	def sensingList(self):
 		for i in self.sensorTimerControl :
@@ -63,4 +65,8 @@ class Sensing :
 				self.led_instance.write(0)
 
 		if self.useSensor[6] and self.button_instance.clearButton(self.sensorDetectControl):
+			self.led_instance.write(1)
+
+		if self.reciveControl :
+			self.reciveControl = False 
 			self.led_instance.write(1)

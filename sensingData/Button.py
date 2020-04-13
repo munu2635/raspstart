@@ -28,5 +28,5 @@ class Control:
 				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck, i)
 
 			print(str(datetime.datetime.now()))
-			print("MQTT-send - clear")
+			print("detector clear")
 			return True

@@ -71,6 +71,7 @@ class Receive:
 			for i, sensorDetectControl in enumerate(self.sensorControl[1]):
 				sensorDetectControl.lastdataClear()
 				self.topic.setSendMessageTopic(1, i, sensorDetectControl.detectCheck)
+			return True
 		
 		elif senderMesaage == 4:
 			os.popen('sudo reboot').read()
@@ -102,7 +103,8 @@ class Receive:
 			for i, sensorDetectControl in enumerate(self.sensorControl[1]):
 				sensorDetectControl.lastdataClear()
 				self.topic.setSendMessageTopic(1, i, sensorDetectControl.detectCheck)
-
+			return True
+			
 		elif senderMesaage == 4:
 			os.popen('sudo reboot').read()	
 
