@@ -6,6 +6,7 @@ import receive
 import DHT11
 import Shock
 import Fire
+import Cds 
 import IR
 import Button
 import LED
@@ -43,7 +44,7 @@ class Sensing :
 		if self.useSensor[4] :
 			print("set gas sensor")
 		if self.useSensor[5] :
-			print("set cds sensor")
+			self.sensorTimerControl.append(Cds.Control(self.all_pin[8], GPIO, self.topic, 2))
 		if self.useSensor[6] :
 			self.button_instance = Button.Control(self.all_pin[6], GPIO, self.topic)
 		if self.useSensor[7] :
