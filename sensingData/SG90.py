@@ -14,8 +14,8 @@ class SG90:
             self.GPIO.setup(self.pin_motor1, self.GPIO.OUT)
             self.GPIO.setup(self.pin_motor2, self.GPIO.OUT)
 
-            self.p1 = self.GPIO.PWM(self.pin_motor1, 25)
-            self.p2 = self.GPIO.PWM(self.pin_motor2, 25)
+            self.p1 = self.GPIO.PWM(self.pin_motor1, 50)
+            self.p2 = self.GPIO.PWM(self.pin_motor2, 50)
 
             self.p1.start(0)
             self.p2.start(0)
