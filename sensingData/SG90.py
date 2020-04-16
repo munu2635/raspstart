@@ -1,7 +1,7 @@
 
 class SG90:
-    loc1 = 9.5
-    loc2 = 9.5
+    loc1 = 8.5
+    loc2 = 8.5
 
     def __init__(self, motor_1, motor_2, GPIO):
         self.GPIO = GPIO
@@ -29,7 +29,7 @@ class SG90:
 
     def write(self, i):
         if i == 0 : # plus
-            if self.loc1 != 11.5:
+            if self.loc1 != 10.5:
                 self.loc1 = self.loc1 + 1
             self.p1.ChangeDutyCycle(self.loc1)
         elif(i == 1): # minus
@@ -37,7 +37,7 @@ class SG90:
                 self.loc1 = self.loc1 - 1    
             self.p1.ChangeDutyCycle(self.loc1)
         elif(i == 2): # down
-            if self.loc2 != 11.5:
+            if self.loc2 != 10.5:
                 self.loc2 = self.loc2 + 1
             self.p2.ChangeDutyCycle(self.loc2)
         elif(i == 3): # up
