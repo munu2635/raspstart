@@ -18,10 +18,8 @@ class Receive:
 				topic = ""
 
 			for i, sender in enumerate(self.topic.TakeTopic):
-				print(topic, i, sender)
 				if topic == sender:
 					senderData = self.matchingTopic(i)
-					print(senderData)
 					self.sender(senderData)
 					break
 
@@ -29,7 +27,6 @@ class Receive:
 		print("start matching Topic")
 		data = self.topic.data
 		for messageNum, message in enumerate(self.topic.MessageList[messgeSenderindex]):
-			print(data, messgeSenderindex, messageNum,  message)
 			if data == message :
 				return [messgeSenderindex, messageNum]
 			
