@@ -36,11 +36,11 @@ class SG90:
             if self.loc1 != 5.5:
                 self.loc1 = self.loc1 - 1    
             self.p1.ChangeDutyCycle(self.loc1)
-        elif i == 2: # up
-            if self.loc2 != 12.5:
-                self.loc2 = self.loc2 + 1
-            self.p2.ChangeDutyCycle(self.loc2)
-        elif i == 3: # down
+        elif i == 2: # down
             if self.loc2 != 6.5:
-                self.loc2 = self.loc2 - 1    
+                self.loc2 = self.loc2 - 1
+            self.p2.ChangeDutyCycle(self.loc2)
+        elif i == 3: # up
+            if self.loc2 != 12.5:
+                self.loc2 = self.loc2 + 1    
             self.p2.ChangeDutyCycle(self.loc2)
