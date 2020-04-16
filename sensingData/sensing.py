@@ -10,6 +10,7 @@ import Cds
 import IR
 import Button
 import LED
+import SG90
 
 class Sensing :
 
@@ -27,10 +28,12 @@ class Sensing :
 		self.reciveControl = False
 		self.sensorTimerControl = []
 		self.sensorDetectControl = []
+		self.sensorMoveControl = []
+
 
 		self.setInstance(GPIO)
 		
-		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl], self.cameraIpPort, self.topic)
+		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl, self.sensorMoveControl], self.cameraIpPort, self.topic)
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
@@ -50,24 +53,28 @@ class Sensing :
 		if self.useSensor[7] :
 			self.led_instance = LED.LED(self.all_pin[2], self.all_pin[3], GPIO)
 			self.led_instance.write(1)
-
-
+		if self.useSensor[8] :
+   			self.sensorMoveControl.append(SG90.SG90(self.all_pin[9], self.all_pin[10], GPIO))
+	
 	def sensingStart(self):
 		self.sensingList()
 		self.reciveControl = self.receive.getData(self.raspid)
 
 	def sensingList(self):
-		for i in self.sensorTimerControl :
-			i.check()
-
-		for i in self.sensorDetectControl :
-			data = i.check()
-			if data == 1 and self.useSensor[7] :
-				self.led_instance.write(0)
-
-		if self.useSensor[6] and self.button_instance.clearButton(self.sensorDetectControl):
-			self.led_instance.write(1)
-
-		if self.reciveControl :
-    			self.reciveControl = False 
-			self.led_instance.write(1)
+		try:
+			for i in self.sensorTimerControl :
+				i.check()
+	
+			for i in self.sensorDetectControl :
+				data = i.check()
+				if data == 1 and self.useSensor[7] :
+					self.led_instance.write(0)
+	
+			if self.useSensor[6] and self.button_instance.clearButton(self.sensorDetectControl):
+				self.led_instance.write(1)
+			
+			if self.reciveControl :
+				self.reciveControl = False 
+				self.led_instance.write(1)
+		except KeyboardInterrupt:
+			self.GPIO.cleanup()		

@@ -10,11 +10,11 @@ IpPortTopic = ["tcs/rasp/localIp", "tcs/rasp/cameraPort", "tcs/rasp/localIpUnder
 sendTopic = [sensorTimerTopic, sensorDetectTopic, IpPortTopic]
 
 
-TakeTopic = ["tcs/com", "tcs/phone", "tcs/detectServer"]
+TakeTopic = ["tcs/com", "tcs/phone", "tcs/detectServer", "tcs/rasp/move"]
 
 computerMessage = ["start", "get", "ipPort", "ok", "reboot"]
 phoneMessage = ["start", "get", "ipPort", "ok", "reboot"]
 detectServerMessage = ["start", "ipPort", "true", "dStart", "dEnd"]
+moveMessage = ["plus", "minus", "up", "down"]
 
-
-MessageList = [computerMessage, phoneMessage, detectServerMessage]
+MessageList = [computerMessage, phoneMessage, detectServerMessage, moveMessage]

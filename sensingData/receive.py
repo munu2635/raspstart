@@ -43,6 +43,8 @@ class Receive:
 			self.senderIsPhone(senderData[1])
 		elif senderData[0] == 2:
 			self.senderIsDServer(senderData[1])
+		elif senderData[0] == 3:
+   			self.senderIsMove(senderData[1])	
 
 	def senderIsCom(self, senderMesaage):
 		print("sender is com")
@@ -116,3 +118,7 @@ class Receive:
 		elif senderMesaage == 1:
 			for i, cameraIpPortInfo in enumerate(self.cameraIpPort):
 				self.topic.setSendMessageTopic(2, i, cameraIpPortInfo)
+		
+	def senderIsMove(self, senderMesaage):
+		print("sender send to Move")
+		self.sensorControl[2][0].write(senderMesaage)

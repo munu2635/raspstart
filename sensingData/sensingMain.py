@@ -23,7 +23,7 @@ mainInstance = sensing.Sensing(GPIO, allIpPort, setting.raspid, setting.sensorda
 
 
 def startToSensing():
-		mainInstance.sensingStart()
+	mainInstance.sensingStart()
 
 try:
 	print("start")
