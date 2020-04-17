@@ -16,6 +16,7 @@ class Sensing :
 
 	def __init__(self, GPIO, allIpPort, raspid, sensordata):
 		self.tHCount = 0
+		self.GPIO = GPIO
 		self.brokerIpPort = allIpPort[0]
 		self.cameraIpPort = allIpPort[1]
 
@@ -32,8 +33,8 @@ class Sensing :
 
 
 		self.setInstance(GPIO)
-		
 		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl, self.sensorMoveControl], self.cameraIpPort, self.topic)
+		self.led_instance.write(1)
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
@@ -76,5 +77,6 @@ class Sensing :
 			if self.reciveControl :
 				self.reciveControl = False 
 				self.led_instance.write(1)
+				
 		except KeyboardInterrupt:
 			self.GPIO.cleanup()		
