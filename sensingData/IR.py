@@ -15,7 +15,6 @@ class IR:
 
 
 class Control:
-
 	true = 1
 	false = 0
 

@@ -34,5 +34,6 @@ class Topic :
             self.topic = str(msg.topic)
             self.data = str(msg.payload)
 
+        self.connect.setWill(self.raspid + "/" + self.sendTopic[3][0])
         self.connect.setOnConnect(on_connect)
         self.connect.setOnMessage(on_message)

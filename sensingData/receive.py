@@ -1,7 +1,6 @@
 import os
 
-class Receive:   
-
+class Receive:
 	def __init__(self, sensorControl, cameraIpPort, topic):
 		self.sensorControl = sensorControl
 		self.cameraIpPort = cameraIpPort

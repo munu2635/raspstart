@@ -8,6 +8,8 @@ import Shock
 import Fire
 import Cds 
 import IR
+
+import Gas
 import Button
 import LED
 import SG90
@@ -21,7 +23,8 @@ class Sensing :
 		self.cameraIpPort = allIpPort[1]
 
 		self.all_pin = sensordata[0]
-		self.useSensor = sensordata[1]
+		self.adc_pin = sensordata[1]
+		self.useSensor = sensordata[2]
 
 		self.topic = Topic.Topic(self.brokerIpPort, raspid)
 		self.raspid = raspid
@@ -34,7 +37,6 @@ class Sensing :
 
 		self.setInstance(GPIO)
 		self.receive = receive.Receive([self.sensorTimerControl, self.sensorDetectControl, self.sensorMoveControl], self.cameraIpPort, self.topic)
-		self.led_instance.write(1)
 
 	def setInstance(self, GPIO):
 		if self.useSensor[0] :
@@ -46,16 +48,16 @@ class Sensing :
 		if self.useSensor[3] :
 			self.sensorDetectControl.append(IR.Control(self.all_pin[5], GPIO, self.topic, 2))
 		if self.useSensor[4] :
-			print("set gas sensor")
+			self.sensorDetectControl.append(Gas.Control(self.adc_pin[0], self.topic, 3))
 		if self.useSensor[5] :
-			self.sensorTimerControl.append(Cds.Control(self.all_pin[8], GPIO, self.topic, 2))
+			self.sensorTimerControl.append(Cds.Control(self.all_pin[7], GPIO, self.topic, 2))
 		if self.useSensor[6] :
 			self.button_instance = Button.Control(self.all_pin[6], GPIO, self.topic)
 		if self.useSensor[7] :
 			self.led_instance = LED.LED(self.all_pin[2], self.all_pin[3], GPIO)
 			self.led_instance.write(1)
 		if self.useSensor[8] :
-   			self.sensorMoveControl.append(SG90.SG90(self.all_pin[9], self.all_pin[10], GPIO))
+   			self.sensorMoveControl.append(SG90.SG90(self.all_pin[8], self.all_pin[9], GPIO))
 	
 	def sensingStart(self):
 		self.sensingList()
