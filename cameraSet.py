@@ -1,44 +1,33 @@
-import RPi.GPIO as gp
+import RPi.GPIO as GPIO
 import os
 
-gp.setwarnings(False)
-gp.setmode(gp.BOARD)
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
 
-gp.setup(7, gp.OUT)
-gp.setup(11, gp.OUT)
-gp.setup(12, gp.OUT)
+GPIO.setup(4, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
 
-gp.setup(15, gp.OUT)
-gp.setup(16, gp.OUT)
-gp.setup(21, gp.OUT)
-gp.setup(22, gp.OUT)
-
-gp.output(11, True)
-gp.output(12, True)
-gp.output(15, True)
-gp.output(16, True)
-gp.output(21, True)
-gp.output(22, True)
 
 def main():
-    gp.output(7, False)
-    gp.output(11, False)
-    gp.output(12, True)
+    GPIO.output(7, False)
+    GPIO.output(11, False)
+    GPIO.output(12, True)
     capture(1)
 
-    gp.output(7, True)
-    gp.output(11, False)
-    gp.output(12, True)
+    GPIO.output(7, True)
+    GPIO.output(11, False)
+    GPIO.output(12, True)
     capture(2)
 
-    gp.output(7, False)
-    gp.output(11, True)
-    gp.output(12, False)
+    GPIO.output(7, False)
+    GPIO.output(11, True)
+    GPIO.output(12, False)
     capture(3)
 
-    gp.output(7, True)
-    gp.output(11, True)
-    gp.output(12, False)
+    GPIO.output(7, True)
+    GPIO.output(11, True)
+    GPIO.output(12, False)
     capture(4)
 
 def capture(cam):
@@ -48,6 +37,6 @@ def capture(cam):
 if __name__ == "__main__":
     main()
 
-    gp.output(7, False)
-    gp.output(11, False)
-    gp.output(12, True)
+    GPIO.output(7, False)
+    GPIO.output(11, False)
+    GPIO.output(12, True)
