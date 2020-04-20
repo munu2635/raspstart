@@ -13,20 +13,30 @@ class Button:
 		return self.GPIO.input(self.__pin)
 
 class Control:
-    	
 	def __init__(self, pin, GPIO, topic):
 		self.clear_instance = Button(pin, GPIO)
 		self.topic = topic
 
-
-	def clearButton(self, sensorDetectControl):
+	def clearButtonDown(self, sensorDetectControl):
 		read = self.clear_instance.read()
 
 		if read == 0:
 			for i in range(0, len(sensorDetectControl)):
 				sensorDetectControl[i].lastdataClear()
-				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck, i)
+				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck)
 
 			print(str(datetime.datetime.now()))
-			print("detector clear")
+			print("MQTT-send - clear")
+			return True
+	
+	def clearButtonUp(self, sensorDetectControl):
+		read = self.clear_instance.read()
+
+		if read == 1:
+			for i in range(0, len(sensorDetectControl)):
+				sensorDetectControl[i].lastdataClear()
+				self.topic.setSendMessageTopic(i, sensorDetectControl[i].detectCheck)
+
+			print(str(datetime.datetime.now()))
+			print("MQTT-send - clear")
 			return True
