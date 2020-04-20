@@ -5,7 +5,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 selection = 4
-enable1 = 1selection
+enable1 = 17
 enable2 = 18
 
 
