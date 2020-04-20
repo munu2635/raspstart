@@ -25,6 +25,7 @@ class Sensing :
 		self.all_pin = sensordata[0]
 		self.adc_pin = sensordata[1]
 		self.useSensor = sensordata[2]
+		self.ButtonUpDown = sensordata[3]
 
 		self.topic = Topic.Topic(self.brokerIpPort, raspid)
 		self.raspid = raspid
