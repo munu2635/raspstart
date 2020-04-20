@@ -1,4 +1,3 @@
-
 raspid = "test1"
 
 brokerIpPort = ["124.139.136.86", "1883"]
@@ -9,7 +8,7 @@ cameraLocalport = ""
 useSensor = [True, True, True, True, False, False, True, True, True ]
  # dht11 / fire / shock / ir / gas / cds / button / led / motor
 
-# ADC 사용 [7, 9, 10, 11]
+# ADC [7, 9, 10, 11]
 adc_pin = [0]
 	# gas_adc_pin = 3 
 
