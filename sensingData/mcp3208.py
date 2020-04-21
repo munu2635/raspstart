@@ -2,8 +2,9 @@ import spidev
 import time
 
 class MCP3208 :
+    spi = spidev.SpiDev()
+    
     def __init__(self, usePin):
-        self.spi = spidev.SpiDev()
         self.usePin = usePin
         self.spi.open(0, 1)
         self.spi.max_speed_hz = 1000000
