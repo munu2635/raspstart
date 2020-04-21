@@ -17,25 +17,25 @@ class Control:
 		self.clear_instance = Button(pin, GPIO)
 		self.topic = topic
 
-	def clearButtonDown(self, sensorDetectControl):
+	def clearButtonDown(self, sensorDetectControl, sensorDetectControlIndex ):
 		read = self.clear_instance.read()
 
 		if read == 0:
 			for i in range(0, len(sensorDetectControl)):
 				sensorDetectControl[i].lastdataClear()
-				self.topic.setSendMessageTopic(1, i, sensorDetectControl[i].detectCheck)
+				self.topic.setSendMessageTopic(1, sensorDetectControlIndex[i], sensorDetectControl[i].detectCheck)
 
 			print(str(datetime.datetime.now()))
 			print("MQTT-send - clear")
 			return True
 	
-	def clearButtonUp(self, sensorDetectControl):
+	def clearButtonUp(self, sensorDetectControl, sensorDetectControlIndex):
 		read = self.clear_instance.read()
 
 		if read == 1:
 			for i in range(0, len(sensorDetectControl)):
 				sensorDetectControl[i].lastdataClear()
-				self.topic.setSendMessageTopic(1, i, sensorDetectControl[i].detectCheck)
+				self.topic.setSendMessageTopic(1, sensorDetectControlIndex[i], sensorDetectControl[i].detectCheck)
 
 			print(str(datetime.datetime.now()))
 			print("MQTT-send - clear")
