@@ -117,4 +117,5 @@ class Receive:
 		
 	def senderIsMove(self, senderMesaage):
 		print("sender send to Move")
-		self.sensorControl[2][0].write(senderMesaage)
+		if self.sensorControl[2] != []:
+			self.sensorControl[2][0].write(senderMesaage)

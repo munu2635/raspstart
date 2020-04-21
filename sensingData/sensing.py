@@ -4,6 +4,7 @@ import Topic
 import receive
 
 import DHT11
+import PM2008M
 import Shock
 import Fire
 import Cds 
@@ -70,7 +71,12 @@ class Sensing :
 			self.led_instance.write(1)
 		if self.useSensor[8] :
 			self.sensorMoveControl.append(SG90.SG90(self.all_pin[8], self.all_pin[9], GPIO))
+		if self.useSensor[9] :
+    		self.sensorTimerControl.append(PM2008M.Control(self.topic,[3, 4]))
+			self.sensorTimerControlIndex.append(3)
+			self.sensorTimerControlIndex.append(4)
 	
+
 	def sensingStart(self):
 		self.sensingList()
 		self.reciveControl = self.receive.getData(self.raspid)
