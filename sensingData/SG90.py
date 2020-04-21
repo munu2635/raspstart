@@ -10,22 +10,25 @@ class SG90:
 
 
     def setting(self):
-        self.GPIO.setup(self.pin_motor1, self.GPIO.OUT)
-        self.GPIO.setup(self.pin_motor2, self.GPIO.OUT)
+        try :
+            self.GPIO.setup(self.pin_motor1, self.GPIO.OUT)
+            self.GPIO.setup(self.pin_motor2, self.GPIO.OUT)
 
-        self.p1 = self.GPIO.PWM(self.pin_motor1, 50)
-        self.p2 = self.GPIO.PWM(self.pin_motor2, 50)
+            self.p1 = self.GPIO.PWM(self.pin_motor1, 50)
+            self.p2 = self.GPIO.PWM(self.pin_motor2, 50)
 
-        self.p1.start(0)
-        self.p2.start(0)
-        self.p1.ChangeDutyCycle(self.loc1)
-        self.p2.ChangeDutyCycle(self.loc2)
-        self.p1.stop()
-        self.p2.stop()
+            self.p1.start(0)
+            self.p2.start(0)
+
+            self.p1.ChangeDutyCycle(self.loc1)
+            self.p2.ChangeDutyCycle(self.loc2)
+       
+        except KeyboardInterrupt:
+            self.p1.stop()
+            self.p2.stop()
+
         
     def write(self, i):
-        self.p1.start(0)
-        self.p2.start(0)
 
         if i == 0 : # plus
             if self.loc1 != 10.5:
@@ -43,6 +46,3 @@ class SG90:
             if self.loc2 != 12.5:
                 self.loc2 = self.loc2 + 1    
             self.p2.ChangeDutyCycle(self.loc2)
-
-        self.p1.stop()
-        self.p2.stop()
