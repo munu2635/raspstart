@@ -72,7 +72,7 @@ class Sensing :
 		if self.useSensor[8] :
 			self.sensorMoveControl.append(SG90.SG90(self.all_pin[8], self.all_pin[9], GPIO))
 		if self.useSensor[9] :
-    		self.sensorTimerControl.append(PM2008M.Control(self.topic,[3, 4]))
+			self.sensorTimerControl.append(PM2008M.Control(self.topic,[3, 4]))
 			self.sensorTimerControlIndex.append(3)
 			self.sensorTimerControlIndex.append(4)
 	
