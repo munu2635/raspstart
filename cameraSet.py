@@ -8,7 +8,6 @@ selection = 4
 enable1 = 17
 enable2 = 18
 
-
 GPIO.setup(selection, GPIO.OUT)
 GPIO.setup(enable1, GPIO.OUT)
 GPIO.setup(enable2, GPIO.OUT)
