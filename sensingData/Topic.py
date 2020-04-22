@@ -14,6 +14,7 @@ class Topic :
         self.raspid = raspid
         self.connect = Connect.Connect(ipPort)
         self.initToSub()
+        self.connect.start()
 
     def setTakeMassageTopic(self, topic):
         self.connect.setSubscribe(self.raspid + "/" + topic)
