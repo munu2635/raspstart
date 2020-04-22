@@ -2,9 +2,11 @@ import smbus
 import datetime
 
 class PM2008M :
-    i2c = smbus.SMBus(1)
-    loc = 0x28
-    TxBuffer = [0x16, 0x7, 0x3, 0xFF, 0xFF, 0, 0x16] 
+
+    def __init__(self):
+        self.i2c = smbus.SMBus(1)
+        self.loc = 0x28
+        self.TxBuffer = [0x16, 0x7, 0x3, 0xFF, 0xFF, 0, 0x16] 
 
     def read(self) :
         self.i2c.write_i2c_block_data(self.loc, 0x50, self.TxBuffer) 
