@@ -36,8 +36,8 @@ class Control:
     def __init__(self, topic, topicNum):
         self.pm2008m_instance = PM2008M()
         self.topic = topic
-        self.pm10TopicNum = topicNum[0]
-        self.pm2p5TopicNum = topicNum[1]
+        self.pm10TopicNum = topicNum[1]
+        self.pm2p5TopicNum = topicNum[0]
         self.detectCheckLastTime = ""
         self.lastdata = ["", ""]
         self.tHCount = 0
@@ -60,5 +60,5 @@ class Control:
         self.tHCount += 1
 
     def getNowData(self):
-        self.topic.setSendMessageTopic(0, self.tempTopicNum, self.lastdata[0])
-        self.topic.setSendMessageTopic(0, self.humidTopicNum, self.lastdata[1])
+        self.topic.setSendMessageTopic(0, self.pm10TopicNum, self.lastdata[0])
+        self.topic.setSendMessageTopic(0, self.pm2p5TopicNum, self.lastdata[1])
