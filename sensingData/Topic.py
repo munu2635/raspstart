@@ -26,6 +26,7 @@ class Topic :
         def on_connect(client, userdata, flags, rc):
             print("MQTT-onConnect - " + str(rc))
             for i in self.TakeTopic :
+                print(i)
                 self.setTakeMassageTopic(i)
 
         def on_message(client, userdata, msg):
