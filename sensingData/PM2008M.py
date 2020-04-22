@@ -50,7 +50,7 @@ class Control:
         self.lastdata[0] = pm10
         self.lastdata[1] = pm2p5
 
-        if(self.tHCount == 20):
+        if(self.tHCount == 50):
             self.topic.setSendMessageTopic(0, self.pm10TopicNum, pm10)
             self.topic.setSendMessageTopic(0, self.pm2p5TopicNum, pm2p5)
             self.tHCount = 0
