@@ -184,8 +184,8 @@ class Control:
 		result = self.dht11_instance.read()
 		if result.is_valid():
 			now_time = "Last valid input: " + str(datetime.datetime.now())
-			temp = "Temperature: %d C" % result.temperature
-			humid = "Humidity: %d %%" % result.humidity
+			temp = result.temperature
+			humid = result.humidity
 
 			self.lastdata[0] = temp
 			self.lastdata[1] = humid

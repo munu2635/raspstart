@@ -21,7 +21,6 @@ class Connect :
             self.client.loop_stop()
             self.client.disconnect()
 
-
     def setPublish(self, Topic, data):
         self.client.publish(Topic, data, 0, False)
 

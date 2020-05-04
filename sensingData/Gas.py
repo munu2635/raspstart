@@ -9,7 +9,7 @@ class Control:
 		self.topic = topic
 		self.topicNum = topicNum
 
-		self.detectCheck = False
+		self.detectCheck = 0
 		self.state = False
 		self.detectCheckLastTime = ""
 
@@ -25,7 +25,7 @@ class Control:
 	def check(self):
 		read = self.dataConvt()
 		if read == True and self.detectCheck == False:
-			self.detectCheck = True
+			self.detectCheck = 1
 			self.detectCheckLastTime = datetime.datetime.now()
 
 			self.topic.setSendMessageTopic(1, self.topicNum, self.detectCheck)
@@ -40,7 +40,7 @@ class Control:
 			return False 
 
 	def lastdataClear(self):
-		self.detectCheck = False
+		self.detectCheck = 0
 		self.state == False
 
 	def getNowData(self):
