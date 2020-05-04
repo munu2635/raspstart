@@ -196,8 +196,8 @@ class Control:
 				self.tHCount = 0
 
 				print(now_time)
-				print("MQTT-send - " + str(temp))
-				print("MQTT-send - " + str(humid))
+				print("MQTT-send temp - %f"  % (temp))
+				print("MQTT-send humid -  %f" % (humid))
 
 			self.tHCount += 1
 
